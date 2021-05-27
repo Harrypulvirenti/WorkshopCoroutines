@@ -6,10 +6,10 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
     val firstIngredientsList = listOf(
-        Ingredient.Water, Ingredient.Milk, Ingredient.Banana, Ingredient.Chocolate
+        Ingredient.Water, Ingredient.Water, Ingredient.Milk
     )
     val secondIngredientsList = listOf(
-        Ingredient.Coffee, Ingredient.Water, Ingredient.Coffee, Ingredient.Milk
+        Ingredient.Coffee, Ingredient.Milk, Ingredient.Chocolate
     )
 
     Example4.solve(
@@ -22,7 +22,7 @@ fun main() = runBlocking {
 object Example4 {
 
     /**
-     * Having a 2 lists of [Ingredient] as input
+     * Having a 2 lists of [Ingredient] as inputs
      * mix the ingredient if possible then return a flow of [Drinks]
      * if not possible emit null.
      */
@@ -38,7 +38,6 @@ sealed class Ingredient {
     object Milk : Ingredient()
     object Coffee : Ingredient()
     object Water : Ingredient()
-    object Banana : Ingredient()
     object Chocolate : Ingredient()
 }
 
@@ -61,10 +60,25 @@ sealed class Drinks {
     ) :
         Drinks()
 
-    data class BananaMilkshake(
-        val firstIngredient: Ingredient.Milk,
-        val secondIngredient: Ingredient.Banana
-    ) :
-        Drinks()
-
+    companion object {
+        // Checks if the ingredients can be mixed or not
+        fun makeDrinkIfPossible(
+            firstIngredient: Ingredient,
+            secondIngredient: Ingredient
+        ) = when {
+            firstIngredient is Ingredient.Milk && secondIngredient is Ingredient.Coffee -> CafeLatte(
+                firstIngredient,
+                secondIngredient
+            )
+            firstIngredient is Ingredient.Water && secondIngredient is Ingredient.Coffee -> Espresso(
+                firstIngredient,
+                secondIngredient
+            )
+            firstIngredient is Ingredient.Milk && secondIngredient is Ingredient.Chocolate -> HotChocolate(
+                firstIngredient,
+                secondIngredient
+            )
+            else -> null
+        }
+    }
 }

@@ -1,3 +1,4 @@
+import common.User
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -13,7 +14,7 @@ fun main() = runBlocking {
     }.join()
 }
 
-suspend fun fetchUser(): User {
+private suspend fun fetchUser(): User {
     println("Fetch User | Thread ${Thread.currentThread()}")
 
     delay(2000)
@@ -22,5 +23,3 @@ suspend fun fetchUser(): User {
 
     return User("Enrico")
 }
-
-data class User(val name: String)

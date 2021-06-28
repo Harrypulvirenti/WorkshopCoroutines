@@ -2,13 +2,14 @@ package flow
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-    val firstIngredientsList = listOf(
+    val firstIngredientsList = flowOf(
         Ingredient.Water, Ingredient.Water, Ingredient.Milk
     )
-    val secondIngredientsList = listOf(
+    val secondIngredientsList = flowOf(
         Ingredient.Coffee, Ingredient.Milk, Ingredient.Chocolate
     )
 
@@ -27,8 +28,8 @@ object Example4 {
      * if not possible emit null.
      */
     fun solve(
-        firstIngredients: List<Ingredient>,
-        secondIngredients: List<Ingredient>
+        firstIngredients: Flow<Ingredient>,
+        secondIngredients: Flow<Ingredient>
     ): Flow<Drinks?> {
         TODO()
     }
@@ -43,20 +44,20 @@ sealed class Ingredient {
 
 sealed class Drinks {
     data class CafeLatte(
-        val firstIngredient: Ingredient.Milk,
-        val secondIngredient: Ingredient.Coffee
+        val firstIngredient: Ingredient = Ingredient.Milk,
+        val secondIngredient: Ingredient = Ingredient.Coffee
     ) :
         Drinks()
 
     data class Espresso(
-        val firstIngredient: Ingredient.Water,
-        val secondIngredient: Ingredient.Coffee
+        val firstIngredient: Ingredient = Ingredient.Water,
+        val secondIngredient: Ingredient = Ingredient.Coffee
     ) :
         Drinks()
 
     data class HotChocolate(
-        val firstIngredient: Ingredient.Milk,
-        val secondIngredient: Ingredient.Chocolate
+        val firstIngredient: Ingredient = Ingredient.Milk,
+        val secondIngredient: Ingredient = Ingredient.Chocolate
     ) :
         Drinks()
 

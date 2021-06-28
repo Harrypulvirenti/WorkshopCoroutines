@@ -13,8 +13,11 @@ repositories {
 
 dependencies {
     val coroutineVersion = "1.5.0-RC"
+    val turbine = "0.5.2"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+    testImplementation ("app.cash.turbine:turbine:$turbine")
     testImplementation(kotlin("test-junit"))
 }
 

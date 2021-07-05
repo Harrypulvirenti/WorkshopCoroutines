@@ -1,10 +1,7 @@
 package flow
 
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 
 fun main() = runBlocking {
@@ -21,9 +18,9 @@ fun main() = runBlocking {
 object Example6 {
 
     /**
-     * When the you receive a new [userActionFlow] emit return a [StateFlow<ViewState>] that represents
-     * the state of the view. It should at first be at [ViewState.NONE] then [ViewState.IN_PROGRESS]
-     * for the [DELAY_AMOUNT] then [ViewState.DONE].
+     * When you receive a new [userActionFlow] emission, return a [StateFlow<ViewState>] that represents
+     * the state of the view. It should run on a separate Dispatcher and first be at [ViewState.NONE] then [ViewState.IN_PROGRESS]
+     * with a [DELAY_AMOUNT] then [ViewState.DONE].
      */
     suspend fun solve(userActionFlow: SharedFlow<Unit>): StateFlow<ViewState> {
        TODO()

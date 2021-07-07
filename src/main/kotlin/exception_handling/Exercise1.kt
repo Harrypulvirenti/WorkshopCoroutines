@@ -11,15 +11,18 @@ object Exercise1 {
      * Prevent the below coroutine from throwing exception then crashing,
      * and print a log with the exception.
      */
-    fun run(): Job{
+    fun run(): Job {
+        val ceh = CoroutineExceptionHandler { _, e ->
+            when (e) {
+                is ExampleLaunchCustomException -> println("Handled custom $e")
+                else -> println("Handled $e")
+            }
+
+        }
         val topLevelScope = CoroutineScope(Job())
-        return topLevelScope.launch() {
-            try {
-                launch {
-                    throw ExampleLaunchCustomException()
-                }
-            } catch (exception: Exception) {
-                println("Attempt to handle $exception")
+        return topLevelScope.launch(ceh) {
+            launch {
+                throw ExampleLaunchCustomException()
             }
         }
     }

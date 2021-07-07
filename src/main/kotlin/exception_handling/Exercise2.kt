@@ -16,8 +16,11 @@ object Exercise2 {
         val deferred = topLevelScope.async<Unit> {
             throw ExampleAwaitCustomException()
         }
-
-        deferred.await()
+        try {
+            deferred.await()
+        } catch (exception: ExampleAwaitCustomException) {
+            println("Attempt to handle $exception")
+        }
     }
 }
 

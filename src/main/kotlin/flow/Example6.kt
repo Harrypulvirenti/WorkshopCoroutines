@@ -23,7 +23,15 @@ object Example6 {
      * with a [DELAY_AMOUNT] then [ViewState.DONE].
      */
     suspend fun solve(userActionFlow: SharedFlow<Unit>): StateFlow<ViewState> {
-       TODO()
+        val viewState = MutableStateFlow(ViewState.NONE)
+        CoroutineScope(Dispatchers.Default).launch {
+            userActionFlow.collect {
+                viewState.emit(ViewState.IN_PROGRESS)
+                delay(DELAY_AMOUNT)
+                viewState.emit(ViewState.DONE)
+            }
+        }
+        return viewState
     }
 }
 

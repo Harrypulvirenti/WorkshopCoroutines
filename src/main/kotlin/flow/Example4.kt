@@ -3,6 +3,7 @@ package flow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
@@ -31,7 +32,9 @@ object Example4 {
         firstIngredients: Flow<Ingredient>,
         secondIngredients: Flow<Ingredient>
     ): Flow<Drinks?> {
-        TODO()
+        return firstIngredients.zip(secondIngredients, transform = { first, second ->
+            Drinks.makeDrinkIfPossible(first, second)
+        })
     }
 }
 

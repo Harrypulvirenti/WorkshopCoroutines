@@ -1,6 +1,7 @@
 package flow
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 
@@ -15,6 +16,6 @@ object Example2 {
      * Only emit the positive numbers.
      */
     fun solve(numbers: List<Int>): Flow<Int> {
-        TODO()
+        return numbers.filter { it > 0 }.asFlow()
     }
 }

@@ -1,7 +1,6 @@
 package flow
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
 
 
@@ -19,6 +18,11 @@ object Example5 {
      * then catch the exception, print the msg and stop execution.
      */
     fun solve(): Flow<Int> {
-        TODO()
+        return (1..5).asFlow().onEach { number ->
+            if(number == 3)
+                throw RuntimeException("Error Message")
+        }.catch { exception ->
+            print(exception.message)
+        }
     }
 }

@@ -29,7 +29,9 @@ object Example1 {
      * Network Call Call 3 executed
      */
     suspend fun solve(vararg calls: suspend () -> Unit) {
-
+        calls.forEach {
+            it()
+        }
     }
 }
 

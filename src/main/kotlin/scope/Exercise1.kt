@@ -14,6 +14,13 @@ object Example1 {
 
     /**
      * Instantiate a custom scope with a name instead of using the GlobalScope
+     *
+     * Expected output:
+     * Coroutine Name $coroutineName
+     *
+     * 2 seconds Delay
+     *
+     * Hello Coroutines!
      */
     fun solve(): Job {
         // Create here your Scope

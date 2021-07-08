@@ -27,6 +27,7 @@ object Example2 {
      * Network Call Call 2 executed
      * Network Call Call 3 executed
      *
+     * Tips: Use coroutineScope { } and async
      */
     suspend fun solve(vararg calls: suspend () -> Unit) {
 

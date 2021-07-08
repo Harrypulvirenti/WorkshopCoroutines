@@ -7,16 +7,23 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-    // Create here your Scope
-    Example1.solve(GlobalScope).join()
+    Example1.solve().join()
 }
 
 object Example1 {
 
     /**
-     * Pass to this function a custom scope instead of using the GlobalScope
+     * Instantiate a custom scope with a name instead of using the GlobalScope
      */
-    fun solve(scope: CoroutineScope): Job =
+    fun solve(): Job {
+        // Create here your Scope
+        return run(GlobalScope)
+    }
+
+    /**
+     * Do not change this function
+     */
+    private fun run(scope: CoroutineScope): Job =
         scope.launch {
             val coroutineName = requireNotNull(coroutineContext[CoroutineName]) {
                 "You must use a coroutine scope with a coroutine name not null"

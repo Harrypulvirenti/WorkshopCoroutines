@@ -1,6 +1,7 @@
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -21,11 +22,12 @@ object Example3 {
      * Division: 2
      */
     fun solve(): Job {
-        val scope = GlobalScope
+        val job = SupervisorJob()
+        val scope = CoroutineScope(CoroutineName("Magic!") + job)
         sum(scope)
         multiplication(scope)
         division(scope)
-        TODO("Return a custom job here")
+        return job
     }
 
     /**

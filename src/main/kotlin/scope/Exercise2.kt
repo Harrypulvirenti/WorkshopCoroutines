@@ -25,7 +25,7 @@ object Example2 {
         sum(scope)
         multiplication(scope)
         division(scope)
-        //TODO return a job
+        TODO("Return a custom job here")
     }
 
     /**

@@ -1,6 +1,5 @@
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -23,8 +22,8 @@ object Example1 {
      * Hello Coroutines!
      */
     fun solve(): Job {
-        // Create here your Scope
-        return run(GlobalScope)
+        val scope = CoroutineScope(CoroutineName("Custom Name"))
+        return run(scope)
     }
 
     /**

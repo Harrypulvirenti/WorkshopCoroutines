@@ -21,11 +21,12 @@ object Example2 {
      * Division: 2
      */
     fun solve(): Job {
-        val scope = GlobalScope
+        val job = Job()
+        val scope = CoroutineScope(CoroutineName("Magic!") + job)
         sum(scope)
         multiplication(scope)
         division(scope)
-        TODO("Return a custom job here")
+        return job
     }
 
     /**

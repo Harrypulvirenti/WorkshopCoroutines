@@ -10,6 +10,7 @@ object Exercise1 {
     /**
      * Prevent the below coroutine from throwing exception then crashing,
      * and print a log with the exception.
+     * Tip: use other method than try/catch
      */
     fun run(): Job{
         val topLevelScope = CoroutineScope(Job())

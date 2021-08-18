@@ -22,7 +22,7 @@ object Example6 {
      * the state of the view. It should run on a separate Dispatcher and first be at [ViewState.NONE] then [ViewState.IN_PROGRESS]
      * with a [DELAY_AMOUNT] then [ViewState.DONE].
      */
-    suspend fun solve(userActionFlow: SharedFlow<Unit>): StateFlow<ViewState> {
+    fun solve(userActionFlow: SharedFlow<Unit>): StateFlow<ViewState> {
        TODO()
     }
 }
